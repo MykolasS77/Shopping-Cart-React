@@ -1,23 +1,14 @@
-import SomeHeading from "./someHeading"
-import Section from './Section';
+import NavBarComp from "./Navbar"
+import ShopItems from "./ShopItems"
 
 function App() {
-
+  
 
   return (
-    <Section level={1}>
-    <SomeHeading/>
-    <SomeHeading/>
-    
-    <Section level={3}>
-    <SomeHeading/>
-    <SomeHeading/>
-    </Section>
-    <Section level={1}>
-    <SomeHeading/>
-    <SomeHeading/>
-    </Section>
-    </Section>
+    <>
+    <NavBarComp></NavBarComp>
+    <ShopItems></ShopItems>
+    </>
   )
 }
 
