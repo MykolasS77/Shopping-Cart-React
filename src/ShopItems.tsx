@@ -4,11 +4,12 @@ import SingleItem from "./SingleItem"
 
 
 export default function ShopItems(){
+    
     return (
         <div className="container">
             <div className="row">
             {ItemsList.map(item => 
-            <SingleItem 
+            <SingleItem key={item.id} 
             item={item}/>
             )}
             </div>
