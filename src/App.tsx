@@ -1,15 +1,17 @@
-import NavBarComp from "./Navbar"
-import ShopItems from "./ShopItems"
-import {BasketContextProvider} from "./basketContext"
-
+import Basket from "./Basket"
+import { Routes, Route } from "react-router-dom"
+import Home from "./Home"
+import { BasketContextProvider } from "./basketContext"
 
 function App() {
 
   return (
     <>
     <BasketContextProvider>
-    <NavBarComp></NavBarComp>
-    <ShopItems></ShopItems>
+    <Routes>
+      <Route path="/main" element={<Home/>}/>
+      <Route path="/basket" element={<Basket/>}/>
+    </Routes>
     </BasketContextProvider>
     </>
   )

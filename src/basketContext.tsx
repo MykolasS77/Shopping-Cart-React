@@ -1,33 +1,62 @@
-import { createContext, useState } from 'react';
+import React, { createContext, useState } from 'react';
+import ItemsList from "../items.json"
 
 type ContainerProps = {
     children: React.ReactNode
 }
 
+interface MyObject {
+    id: number,
+    itemName: string,
+    price: number,
+    picture: string,
+    stock: number
+  }
+
 interface ContextType{
-    exampleTsx: string,
-    setExampleTsx: React.Dispatch<React.SetStateAction<string>>
-    addToBasket(): string
+    basketList: any[],
+    setbasketList: React.Dispatch<React.SetStateAction<MyObject[]>>
+    updateArray: (id: number) => void
 }
+
+
 
 const defaultState = {
-    exampleTsx: "",
-    setExampleTsx: () => "",
-    addToBasket: () => "Hello World"
+    basketList: [],
+    setbasketList: () => "",
+    updateArray: () => ["Hello"]
 }
 
-function addToBasket(){
-    return "Hello world"
-}
 
 const BasketContext = createContext<ContextType >(defaultState)
 
 const BasketContextProvider = (props: ContainerProps) => {
 
-    const [exampleTsx, setExampleTsx] = useState<string>("")
+   
+        // Initialize state with an empty array
+        const [basketList, setbasketList] = useState<MyObject[]>([]);
+      
+        // Function to update the array
+        const updateArray = (itemID: number) => {
+            // console.log("update array initiated")
+            console.log(itemID, "from context")
+            const itemObj = ItemsList.find(obj => obj.id === itemID)
+            
+          if (itemObj){
+            setbasketList(prevList => [...prevList, itemObj]);
+          }
+          else{
+            console.log("object not found")
+          }
+          
+          
+          
+          
+        }
+
 
     return(
-        <BasketContext.Provider value={{exampleTsx, setExampleTsx, addToBasket}}>
+        <BasketContext.Provider value={{basketList, setbasketList, updateArray}}>
             {props.children}
         </BasketContext.Provider>
     )
