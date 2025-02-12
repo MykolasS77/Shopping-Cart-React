@@ -10,7 +10,9 @@ interface MyObject {
     itemName: string,
     price: number,
     picture: string,
+    quantity: number,
     stock: number
+    
   }
 
 interface ContextType{
@@ -32,25 +34,29 @@ const BasketContext = createContext<ContextType >(defaultState)
 
 const BasketContextProvider = (props: ContainerProps) => {
 
-   
-        // Initialize state with an empty array
+  
         const [basketList, setbasketList] = useState<MyObject[]>([]);
+       
       
-        // Function to update the array
         const updateArray = (itemID: number) => {
-            // console.log("update array initiated")
-            console.log(itemID, "from context")
-            const itemObj = ItemsList.find(obj => obj.id === itemID)
-            
+          const itemObj = ItemsList.find(obj => obj.id === itemID)
+        
+                    
           if (itemObj){
-            setbasketList(prevList => [...prevList, itemObj]);
+            basketList.forEach((item) => {
+              console.log(item)
+              if(item.id === itemID){
+                item.quantity += 1
+              }
+            })
+     
+            const newObj = {...itemObj, quantity: 1}
+            setbasketList(prevList => [...prevList, newObj])
+              
+            
           }
-          else{
-            console.log("object not found")
-          }
           
-          
-          
+                
           
         }
 

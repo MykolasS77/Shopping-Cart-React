@@ -9,7 +9,7 @@ function App() {
     <>
     <BasketContextProvider>
     <Routes>
-      <Route path="/main" element={<Home/>}/>
+      <Route path="/" element={<Home/>}/>
       <Route path="/basket" element={<Basket/>}/>
     </Routes>
     </BasketContextProvider>

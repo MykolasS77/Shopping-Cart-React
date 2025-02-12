@@ -9,8 +9,11 @@ export default function ShopItems(){
         <div className="container">
             <div className="row">
             {ItemsList.map(item => 
-            <SingleItem key={item.id} 
-            item={item}/>
+            <SingleItem 
+            key={item.id} 
+            item={item}
+            inBasket={false}
+            />
             )}
             </div>
         </div>
