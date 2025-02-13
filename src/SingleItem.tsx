@@ -21,7 +21,8 @@ interface SingleItemProps{
 function SingleItem({ item, inBasket = false, quantity }: SingleItemProps) {
   const basket = useContext(BasketContext);
 
-  const update = () => basket.updateArray(item.id)
+  const add = () => basket.updateArray(item.id)
+  const remove = () => basket.removeItem(item.id)
 
   
 
@@ -33,8 +34,12 @@ function SingleItem({ item, inBasket = false, quantity }: SingleItemProps) {
         <Card.Title>{item["itemName"]} </Card.Title>
         {item.stock > 5 && inBasket == false ? <p className="text-muted">+5 in stock</p> : inBasket? <Card.Title>{quantity} in cart </Card.Title>: <p className='text-danger'>{item.stock} left in stock</p>} 
         </div>
-        <Card.Text className="d-flex justify-content-between align-items-center"><>{item.price}€</>
-        <Button variant="primary" className="d-flex justify-content-end" onClick={update}>{inBasket? "+" : "Buy"}</Button></Card.Text>
+        <Card.Text className="d-flex justify-content-between align-items-center">{item.price}€</Card.Text>
+        <div>
+        <Button variant="primary" onClick={add}>{inBasket? "+" : "Buy"}</Button>
+        {inBasket? <Button variant="primary" onClick={remove}>-</Button> : null}
+        </div>
+        
       </Card.Body>
     </Card>
   );

@@ -19,6 +19,7 @@ interface ContextType{
     basketList: any[],
     setbasketList: React.Dispatch<React.SetStateAction<MyObject[]>>
     updateArray: (id: number) => void
+    removeItem: (id: number) => void
 }
 
 
@@ -26,7 +27,8 @@ interface ContextType{
 const defaultState = {
     basketList: [],
     setbasketList: () => "",
-    updateArray: () => ["Hello"]
+    updateArray: () => [],
+    removeItem: () => []
 }
 
 
@@ -36,33 +38,64 @@ const BasketContextProvider = (props: ContainerProps) => {
 
   
         const [basketList, setbasketList] = useState<MyObject[]>([]);
-       
+        
+        
       
         const updateArray = (itemID: number) => {
           const itemObj = ItemsList.find(obj => obj.id === itemID)
-        
-                    
-          if (itemObj){
-            basketList.forEach((item) => {
-              console.log(item)
-              if(item.id === itemID){
-                item.quantity += 1
-              }
-            })
-     
+          const findObj = basketList.find(obj => obj.id === itemObj?.id)
+                      
+          if (itemObj && findObj === undefined ){
             const newObj = {...itemObj, quantity: 1}
             setbasketList(prevList => [...prevList, newObj])
+          }
+          else{
+            const newList = basketList.map((item) => {
               
-            
+              if(item.id === itemID){
+                const newQuantity = item.quantity + 1
+                return {...item, quantity: newQuantity}
+              }
+              return item
+              
+            })
+            setbasketList(newList)
           }
           
-                
+            
           
+
+          
+              
+        }
+
+        const removeItem = (itemID: number) => {
+
+          const newList = basketList.map((item) => {
+            
+            if(item.id === itemID){ 
+              const newQuantity = item.quantity - 1
+              return {...item, quantity: newQuantity}
+            }
+            return item
+            
+          })
+         
+          setbasketList(newList)
+
+          basketList.forEach(item => {
+            if(item.quantity === 1){        
+              const newList = basketList.filter(a => a.id !== itemID)
+              setbasketList(newList)
+              return
+            }
+          })
+                       
         }
 
 
     return(
-        <BasketContext.Provider value={{basketList, setbasketList, updateArray}}>
+        <BasketContext.Provider value={{basketList, setbasketList, updateArray, removeItem}}>
             {props.children}
         </BasketContext.Provider>
     )
