@@ -24,8 +24,6 @@ function SingleItem({ item, inBasket = false, quantity }: SingleItemProps) {
   const add = () => basket.updateArray(item.id)
   const remove = () => basket.removeItem(item.id)
 
-  
-
   return (
     <Card style={{ width: '20rem' }}>
       <Card.Img variant="top" src={item.picture}/>

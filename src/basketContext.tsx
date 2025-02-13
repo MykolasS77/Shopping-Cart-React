@@ -20,6 +20,7 @@ interface ContextType{
     setbasketList: React.Dispatch<React.SetStateAction<MyObject[]>>
     updateArray: (id: number) => void
     removeItem: (id: number) => void
+    getTotalPrice: () => number
 }
 
 
@@ -28,7 +29,9 @@ const defaultState = {
     basketList: [],
     setbasketList: () => "",
     updateArray: () => [],
-    removeItem: () => []
+    removeItem: () => [],
+    getTotalPrice: () => 0
+
 }
 
 
@@ -38,9 +41,17 @@ const BasketContextProvider = (props: ContainerProps) => {
 
   
         const [basketList, setbasketList] = useState<MyObject[]>([]);
+
+        const getTotalPrice = () => {
+          let totalAmount = 0
+          basketList.forEach((item) => {
+            totalAmount += item.price * item.quantity
+          })
+          return totalAmount
+        }
+
+
         
-        
-      
         const updateArray = (itemID: number) => {
           const itemObj = ItemsList.find(obj => obj.id === itemID)
           const findObj = basketList.find(obj => obj.id === itemObj?.id)
@@ -61,11 +72,6 @@ const BasketContextProvider = (props: ContainerProps) => {
             })
             setbasketList(newList)
           }
-          
-            
-          
-
-          
               
         }
 
@@ -95,7 +101,7 @@ const BasketContextProvider = (props: ContainerProps) => {
 
 
     return(
-        <BasketContext.Provider value={{basketList, setbasketList, updateArray, removeItem}}>
+        <BasketContext.Provider value={{basketList, setbasketList, updateArray, removeItem, getTotalPrice}}>
             {props.children}
         </BasketContext.Provider>
     )

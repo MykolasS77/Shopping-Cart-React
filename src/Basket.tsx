@@ -8,6 +8,7 @@ import SingleItem from "./SingleItem";
 export default function Basket(){
     const basket = useContext(BasketContext)
     
+    const totalAmount = basket.getTotalPrice()
     
 
     return (
@@ -16,7 +17,7 @@ export default function Basket(){
         <div className="container">
             <div className="row">
         
-        <h1>Basket Items:</h1>
+            {basket.basketList.length === 0? <h1>No items.</h1>: <h1>Your Items:</h1>}
         
             {basket.basketList.map(item => (
             <SingleItem 
@@ -26,7 +27,8 @@ export default function Basket(){
             quantity={item.quantity}
             />
             ))}      
-        </div>
+            </div>
+            {basket.basketList.length === 0? null : <h1 className="d-flex align-items-end-item">Total price for your order: {totalAmount.toFixed(2)}€</h1>}
         </div>
         </>
         
