@@ -1,4 +1,4 @@
-import React, { createContext, useState } from 'react';
+import React, { createContext, useEffect, useState } from 'react';
 import ItemsList from "../items.json"
 
 type ContainerProps = {
@@ -39,9 +39,9 @@ const BasketContext = createContext<ContextType >(defaultState)
 
 const BasketContextProvider = (props: ContainerProps) => {
 
+        const data = JSON.parse(window.localStorage.getItem("items") || "[]")
+        const [basketList, setbasketList] = useState<MyObject[]>(data);
   
-        const [basketList, setbasketList] = useState<MyObject[]>([]);
-
         const getTotalPrice = () => {
           let totalAmount = 0
           basketList.forEach((item) => {
@@ -80,6 +80,7 @@ const BasketContextProvider = (props: ContainerProps) => {
           const newList = basketList.map((item) => {
             
             if(item.id === itemID){ 
+            
               const newQuantity = item.quantity - 1
               return {...item, quantity: newQuantity}
             }
@@ -90,7 +91,7 @@ const BasketContextProvider = (props: ContainerProps) => {
           setbasketList(newList)
 
           basketList.forEach(item => {
-            if(item.quantity === 1){        
+            if(item.quantity === 1 && itemID === item.id){        
               const newList = basketList.filter(a => a.id !== itemID)
               setbasketList(newList)
               return
@@ -98,6 +99,11 @@ const BasketContextProvider = (props: ContainerProps) => {
           })
                        
         }
+
+        useEffect(() => {
+          window.localStorage.setItem("items", JSON.stringify(basketList))
+        }, [basketList])
+
 
 
     return(
