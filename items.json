@@ -3,14 +3,14 @@
         "id": 1,
         "itemName": "Guitar",
         "price": 899.99,
-        "picture": "./src/assets/strandberg.jpg",
+        "picture": "./assets/strandberg.jpg",
         "stock": 50
 
     },
     {
         "id": 2,
         "itemName": "Hoodie",
-        "picture": "./src/assets/hoodie.jpg",
+        "picture": "./assets/hoodie.jpg",
         "price": 49.99,
         "stock": 3
 
@@ -18,7 +18,7 @@
     {
         "id": 3,
         "itemName": "Smart TV",
-        "picture": "./src/assets/smartTV.jpg",
+        "picture": "./assets/smartTV.jpg",
         "price": 1499.99,
         "stock": 1
 
@@ -26,7 +26,7 @@
     {
         "id": 4,
         "itemName": "Shovel",
-        "picture": "./src/assets/shovel.jpg",
+        "picture": "./assets/shovel.jpg",
         "price": 12.99,
         "stock": 15
 
@@ -34,7 +34,7 @@
     {
         "id": 5,
         "itemName": "Hair dryer",
-        "picture": "./src/assets/hairDryer.jpg",
+        "picture": "./assets/hairDryer.jpg",
         "price": 9.99,
         "stock": 2
 
