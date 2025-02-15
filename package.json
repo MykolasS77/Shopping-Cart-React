@@ -1,6 +1,6 @@
 {
   "name": "shopping-cart-mine",
-  "homepage": "https://MykolasS77.github.io/Shopping-Cart-React",
+  "homepage": "https://MykolasS77.github.io/Shopping-Cart-React/",
   "private": true,
   "version": "0.0.0",
   "type": "module",
@@ -8,7 +8,7 @@
     "dev": "vite",
     "build": "tsc -b && vite build",
     "predeploy": "npm run build",
-    "deploy": "gh-pages -d -dist",
+    "deploy": "gh-pages -d dist",
     "lint": "eslint .",
     "preview": "vite preview"
   },

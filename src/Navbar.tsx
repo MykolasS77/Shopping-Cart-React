@@ -19,7 +19,7 @@ function NavBarComp() {
         <Navbar.Collapse id="basic-navbar-nav">
           <div className="me-auto">
           </div>
-          {window.location.pathname === "/" && (
+          {window.location.pathname === "/Shopping-Cart-React/" && (
           <span className="navbar-text me-5">          
             <OffCanvasFunction></OffCanvasFunction>
             
