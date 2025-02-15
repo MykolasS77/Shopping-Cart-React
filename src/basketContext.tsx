@@ -18,9 +18,11 @@ interface MyObject {
 interface ContextType{
     basketList: any[],
     setbasketList: React.Dispatch<React.SetStateAction<MyObject[]>>
-    updateArray: (id: number) => void
-    removeItem: (id: number) => void
+    addToBasket: (id: number) => void
+    minusItem: (id: number) => void
     getTotalPrice: () => number
+    totalItems: () => number | void 
+    removeItem: (id: number) => void
 }
 
 
@@ -28,9 +30,11 @@ interface ContextType{
 const defaultState = {
     basketList: [],
     setbasketList: () => "",
-    updateArray: () => [],
-    removeItem: () => [],
-    getTotalPrice: () => 0
+    addToBasket: () => [],
+    minusItem: () => [],
+    getTotalPrice: () => 0,
+    totalItems: () => 0,
+    removeItem: () => []
 
 }
 
@@ -52,7 +56,7 @@ const BasketContextProvider = (props: ContainerProps) => {
 
 
         
-        const updateArray = (itemID: number) => {
+        const addToBasket = (itemID: number) => {
           const itemObj = ItemsList.find(obj => obj.id === itemID)
           const findObj = basketList.find(obj => obj.id === itemObj?.id)
                       
@@ -75,9 +79,9 @@ const BasketContextProvider = (props: ContainerProps) => {
               
         }
 
-        const removeItem = (itemID: number) => {
+        const minusItem = (itemID: number) => {
 
-          const newList = basketList.map((item) => {
+        const newList = basketList.map((item) => {
             
             if(item.id === itemID){ 
             
@@ -100,6 +104,26 @@ const BasketContextProvider = (props: ContainerProps) => {
                        
         }
 
+        const totalItems = () => {
+          if(basketList.length === 0){
+            return 
+          }
+          else{
+            let totalItems = 0
+            basketList.forEach(element => {
+              totalItems += element.quantity
+            });
+      
+            return totalItems
+          }
+        }
+
+        const removeItem = (itemID: number) => {
+          setbasketList(
+            basketList.filter(a => a.id !== itemID)
+          );
+        }
+
         useEffect(() => {
           window.localStorage.setItem("items", JSON.stringify(basketList))
         }, [basketList])
@@ -107,7 +131,7 @@ const BasketContextProvider = (props: ContainerProps) => {
 
 
     return(
-        <BasketContext.Provider value={{basketList, setbasketList, updateArray, removeItem, getTotalPrice}}>
+        <BasketContext.Provider value={{basketList, setbasketList, addToBasket, minusItem, getTotalPrice, totalItems, removeItem}}>
             {props.children}
         </BasketContext.Provider>
     )
