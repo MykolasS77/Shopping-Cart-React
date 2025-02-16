@@ -3,6 +3,7 @@ import Container from 'react-bootstrap/Container';
 import Navbar from 'react-bootstrap/Navbar';
 import { BasketContext } from './basketContext';
 import OffCanvasFunction from './offCanvas';
+import { Link } from 'react-router-dom';
 
 
 function NavBarComp({basketNav=false}: {basketNav?: boolean}) {
@@ -13,7 +14,7 @@ function NavBarComp({basketNav=false}: {basketNav?: boolean}) {
   return (
     <Navbar expand="lg" className="bg-body-tertiary">
       <Container>
-        <Navbar.Brand href="/">Shopping Cart</Navbar.Brand>
+        <Link to="/" style={{ textDecoration: 'none' }} ><Navbar.Brand>Shopping Cart</Navbar.Brand></Link>
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
         <Navbar.Collapse id="basic-navbar-nav">
           <div className="me-auto">
