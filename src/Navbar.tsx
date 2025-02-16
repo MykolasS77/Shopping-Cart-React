@@ -5,11 +5,11 @@ import { BasketContext } from './basketContext';
 import OffCanvasFunction from './offCanvas';
 
 
-function NavBarComp() {
+function NavBarComp({basketNav=false}: {basketNav: boolean}) {
   const basket = useContext(BasketContext)
 
   const totalItems = basket.totalItems()
-  console.log(window.location.pathname)
+  console.log(basketNav)
   
 
   return (
@@ -20,7 +20,7 @@ function NavBarComp() {
         <Navbar.Collapse id="basic-navbar-nav">
           <div className="me-auto">
           </div>
-          {window.location.pathname === "/Shopping-Cart-React/" && (
+          {basketNav === false && (
           <span className="navbar-text me-5">          
             <OffCanvasFunction></OffCanvasFunction>
             

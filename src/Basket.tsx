@@ -13,7 +13,7 @@ export default function Basket(){
 
     return (
         <>
-        <NavBarComp/>
+        <NavBarComp basketNav={true}/>
         <div className="container">
             <div className="row">
         
