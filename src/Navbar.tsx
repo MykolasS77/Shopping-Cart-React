@@ -5,12 +5,10 @@ import { BasketContext } from './basketContext';
 import OffCanvasFunction from './offCanvas';
 
 
-function NavBarComp({basketNav=false}: {basketNav: boolean}) {
+function NavBarComp({basketNav=false}: {basketNav?: boolean}) {
   const basket = useContext(BasketContext)
 
   const totalItems = basket.totalItems()
-  console.log(basketNav)
-  
 
   return (
     <Navbar expand="lg" className="bg-body-tertiary">
