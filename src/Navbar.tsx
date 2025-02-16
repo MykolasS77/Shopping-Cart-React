@@ -9,6 +9,7 @@ function NavBarComp() {
   const basket = useContext(BasketContext)
 
   const totalItems = basket.totalItems()
+  console.log(window.location.pathname)
   
 
   return (

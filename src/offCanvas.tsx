@@ -3,6 +3,7 @@ import Button from 'react-bootstrap/Button';
 import Offcanvas from 'react-bootstrap/Offcanvas';
 import SingleItem from "./SingleItem";
 import { BasketContext } from "./basketContext";
+import { Link } from 'react-router-dom';
 
 
 export default function OffCanvasFunction() {
@@ -39,7 +40,7 @@ export default function OffCanvasFunction() {
             ))}
          {basket.basketList.length > 0 ? <h2>Total price: {totalAmount.toFixed(2)}€</h2>: null}
         </Offcanvas.Body>
-        {basket.basketList.length > 0 ? <Button href="/Shopping-Cart-React/basket">Proceed to Checkout</Button> : null}
+        {basket.basketList.length > 0 ? <Link to="/basket"><Button>Proceed to Checkout</Button></Link> : null}
         
       </Offcanvas>
     </>

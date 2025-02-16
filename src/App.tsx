@@ -11,8 +11,8 @@ function App() {
     <>
     <BasketContextProvider>
     <Routes>
-      <Route path="/Shopping-Cart-React/" element={<Home/>}/>
-      <Route path="/Shopping-Cart-React/basket/" element={<Basket/>}/>
+      <Route path="/" element={<Home/>}/>
+      <Route path="/basket" element={<Basket/>}/>
     </Routes>
     </BasketContextProvider>
     </>
