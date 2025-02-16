@@ -40,7 +40,7 @@ export default function OffCanvasFunction() {
             ))}
          {basket.basketList.length > 0 ? <h2>Total price: {totalAmount.toFixed(2)}€</h2>: null}
         </Offcanvas.Body>
-        {basket.basketList.length > 0 ? <Link to="/basket"><Button>Proceed to Checkout</Button></Link> : null}
+        {basket.basketList.length > 0 ? <Link to="/basket" className="d-flex justify-content-center"><Button>Proceed to Checkout</Button></Link> : null}
         
       </Offcanvas>
     </>
